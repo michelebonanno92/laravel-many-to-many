@@ -7,6 +7,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\TypeController as AdminTypeController;
+
 
 
 /*
@@ -32,6 +34,9 @@ Route::prefix('admin')
     Route::resource('posts', AdminPostController::class);
 
     Route::resource('projects', AdminProjectController::class);
+
+    Route::resource('types', AdminTypeController::class);
+
 
 
 });
