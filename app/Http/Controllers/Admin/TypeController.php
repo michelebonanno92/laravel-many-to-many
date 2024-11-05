@@ -16,7 +16,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index', compact('type'));
+        $plutos = Type::all();
+
+        return view('admin.types.index', compact('plutos'));
     }
 
     /**

@@ -26,7 +26,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($types as $type )
+                  @foreach ($plutos as $type)
                     <tr>
                       <th scope="row">{{ $type->id}}</th>
                       <td>{{ $type->title}}</td>
@@ -44,8 +44,6 @@
                  
                   @endforeach
                 </tbody>
-               
-               
               </table>
         </div>
     </div>
