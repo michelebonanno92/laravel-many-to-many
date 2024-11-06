@@ -35,8 +35,8 @@
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
                           Vedi
                          </a>
-                         <a href="{{ route('admin.types.edit', ['type' => $type->id]) }}" class="btn btn-warning">
-                           Modifica
+                          <a href="{{ route('admin.types.edit', ['type' => $type->id]) }}" class="btn btn-warning">
+                              Modifica
                          </a>
                          <form 
                          {{-- aggiunto conferma di cancellazione --}}
