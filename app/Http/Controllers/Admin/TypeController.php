@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// aggiunto per lo slug
+// use Illuminate\Support\Str;
 
 
 // Models
@@ -16,8 +18,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $plutos = Type::all();
-
+        $plutos = Type::get();
         return view('admin.types.index', compact('plutos'));
     }
 
@@ -26,7 +27,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -34,7 +35,34 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:3|max:6',
+        ],[
+            'title.min' => 'il campo titolo deve avere minimo 3 caratteri'
+        ]);
+
+        $data['slug'] = str()->slug($data['title']);
+
+        $type = Type::create($data);
+          return redirect()->route('admin.types.index', ['type' => $type->id]);
+        // $request->validate([
+        //     'title' => 'required|min:3|max:6',
+        // ],[
+        //     'title.min' => 'il campo titolo deve avere minimo 3 caratteri'
+            
+        // ]);
+
+        // $data = $request->all();
+
+        // $type = new Type();
+        // $type->title = $request->title;
+        // $type->slug = Str::slug($request->title, '-');
+
+        // $type->save();
+        // \Log::debug($type);
+        // return redirect()->route('admin.types.index', ['type' => $type->id]);
+       
+       
     }
 
     /**
@@ -42,7 +70,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show' , compact('type'));
     }
 
     /**

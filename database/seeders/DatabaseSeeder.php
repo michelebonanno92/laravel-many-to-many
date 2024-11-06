@@ -24,8 +24,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PostSeeder::class,
-            ProjectSeeder::class,
-            TypeSeeder::class
+            // richiamo prima TySeeder 
+            TypeSeeder::class,
+            ProjectSeeder::class
 
         ]);
     }

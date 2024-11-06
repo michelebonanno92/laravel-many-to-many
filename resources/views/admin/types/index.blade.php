@@ -8,10 +8,10 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-info">
-                        Tutti i progetti 
+                        Tutte le tipologie
                     </h1>
                     <a href="{{ route('admin.types.create')}}" class="btn btn-success w-100">
-                      + Aggiungi Progetto
+                      + Aggiungi tipo
                     </a>
                 </div>
             </div>

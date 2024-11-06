@@ -4,15 +4,15 @@
 
 @section('main-content')
 <h1>
-  Crea Progetto
+  Crea tipo
 </h1>
 
-<form action="{{ route('admin.projects.store')}}" method="POST">
+<form action="{{ route('admin.types.store')}}" method="POST">
   @csrf
   <div class="mb-3">
-    <label for="name" class="form-label">Nome</label>
-    <input type="text" class="form-control" id="name"  name="name" placeholder="Inserisci il nome del progetto..." value="{{old('name')}}" required maxlength="6">
-    @error('name')
+    <label for="title" class="form-label">Titolo</label>
+    <input type="text" class="form-control" id="title"  name="title" placeholder="Inserisci il nome del tipo..." value="{{old('title')}}" required maxlength="6">
+    @error('title')
       <div class="alert alert-danger mt-2">
         Errore Nome: {{ $message }}
       </div>
