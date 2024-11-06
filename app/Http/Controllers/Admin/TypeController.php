@@ -87,7 +87,17 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:3|max:6',
+        ],[
+            'title.min' => 'il campo titolo deve avere minimo 3 caratteri'
+        ]);
+
+        $data['slug'] = str()->slug($data['title']);
+
+        $type->update($data);
+
+          return redirect()->route('admin.types.index', ['type' => $type->id]);
     }
 
     /**

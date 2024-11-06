@@ -35,7 +35,7 @@
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
                           Vedi
                          </a>
-                         <a href="{{ route('admin.types.create', ['type' => $type->id]) }}" class="btn btn-warning">
+                         <a href="{{ route('admin.types.edit', ['type' => $type->id]) }}" class="btn btn-warning">
                            Modifica
                          </a>
                       </td>
