@@ -35,7 +35,7 @@
                         <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-primary">
                           Vedi
                          </a>
-                         <a href="{{ route('admin.projects.create', ['project' => $project->id]) }}" class="btn btn-warning">
+                         <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">
                            Modifica
                          </a>
                       </td>

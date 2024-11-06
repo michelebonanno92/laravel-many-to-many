@@ -49,7 +49,7 @@ class ProjectController extends Controller
         $project->slug = Str::slug($request->name, '-');
 
         $project->save();
-        \Log::debug($project);
+        // \Log::debug($project);
         return redirect()->route('admin.projects.index', ['project' => $project->id]);
         // dd($project);
     }
@@ -72,7 +72,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -80,7 +80,23 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:6',
+        ],[
+            'name.min' => 'il campo name deve avere minimo 3 caratteri'
+            
+        ]);
+
+        $data = $request->all();
+
+        // $project = new Project();
+        // $project->name = $request->name;
+        // $project->slug = Str::slug($request->name, '-');
+
+        $project->update();
+        // \Log::debug($project);
+
+        return redirect()->route('admin.projects.index', ['project' => $project->id]);
     }
 
     /**

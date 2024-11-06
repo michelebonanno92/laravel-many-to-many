@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title' , 'Crea il tuo progetto')
+@section('page-title' , 'Crea il tuo tipo')
 
 @section('main-content')
 <h1>

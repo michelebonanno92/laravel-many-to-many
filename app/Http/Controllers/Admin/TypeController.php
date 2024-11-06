@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // aggiunto per lo slug
 // use Illuminate\Support\Str;
+// use Illuminate\Support\Facades\Log;
 
 
 // Models
@@ -59,7 +60,7 @@ class TypeController extends Controller
         // $type->slug = Str::slug($request->title, '-');
 
         // $type->save();
-        // \Log::debug($type);
+        // Log::debug($type);
         // return redirect()->route('admin.types.index', ['type' => $type->id]);
        
        
@@ -78,7 +79,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
