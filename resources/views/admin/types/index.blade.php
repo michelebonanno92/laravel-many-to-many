@@ -38,10 +38,20 @@
                          <a href="{{ route('admin.types.edit', ['type' => $type->id]) }}" class="btn btn-warning">
                            Modifica
                          </a>
+                         <form 
+                         {{-- aggiunto conferma di cancellazione --}}
+                            onsubmit="return confirm('sei sicuro di volerlo cancellare ?')"
+                            action="{{ route('admin.types.destroy', ['type' => $type->id]) }}" 
+                            method="POST" 
+                            class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                               Elimina
+                            </button>
+                         </form>
                       </td>
-                   
                     </tr>
-                 
                   @endforeach
                 </tbody>
               </table>
