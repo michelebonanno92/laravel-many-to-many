@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('slug');
 
             // creo la colonna type_id-> 
+<<<<<<< HEAD
             // $table->unsignedBigInteger('type_id')->nullable();
             // // aggiungi la foreign key  sulla colonna  type_id
+=======
+            $table->unsignedBigInteger('type_id')->nullable();
+            // aggiungi la foreign key  sulla colonna  type_id
+>>>>>>> de1bdfd5732d9c168a21005527d20c9888216e43
             // $table->foreign('type_id')
             //         ->references('id')
             //         ->on('types'); 
