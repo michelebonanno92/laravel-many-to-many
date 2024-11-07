@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+
+            // $table->unsignedBigInteger('project_id')->nullable();
+            // // aggiungi la foreign key  sulla colonna  type_id
+            // $table->foreign('project_id')
+            //         ->references('id')
+            //         ->on('projects'); 
+
             $table->timestamps();
         });
     }
