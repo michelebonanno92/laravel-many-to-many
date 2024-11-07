@@ -90,27 +90,25 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $data = $request->validate([
-            'name' => 'required|min:3|max:6',
-        ],[
-            'name.min' => 'il campo titolo deve avere minimo 3 caratteri'
-        ]);
+        // $data = $request->validate([
+        //     'name' => 'required|min:3|max:6',
+        // ],[
+        //     'name.min' => 'il campo titolo deve avere minimo 3 caratteri'
+        // ]);
 
-        $data['slug'] = str()->slug($data['name']);
+        // $data['slug'] = str()->slug($data['name']);
 
-        $project->update($data);
-          return redirect()->route('admin.projects.index', ['project' => $project->id]);
+        // $project->update($data);
+        //   return redirect()->route('admin.projects.index', ['project' => $project->id]);
 
-        // $data = $request->all();
+       
+        $project->name = $request->name;
+        $project->slug = Str::slug($request->name, '-');
 
-        // $project = new Project();
-        // $project->name = $request->name;
-        // $project->slug = Str::slug($request->name, '-');
-
-        // $project->update();
+        $project->update();
         // \Log::debug($project);
 
-        // return redirect()->route('admin.projects.index', ['project' => $project->id]);
+        return redirect()->route('admin.projects.index', ['project' => $project->id]);
 
 
     }
