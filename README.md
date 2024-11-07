@@ -28,7 +28,7 @@ I task da svolgere sono diversi, ma alcuni di essi sono un ripasso di ciò che a
 - permettere all'utente di associare una tipologia nella pagina di creazione e modifica di un progetto
 - gestire il salvataggio dell'associazione progetto-tipologia con opportune regole di validazione
 
-Bonus 2
+Bonus 2f
 aggiungere le operazioni CRUD per il model Type, in modo da gestire le tipologie di progetto direttamente dal pannello di amministrazione.
 
  -->
