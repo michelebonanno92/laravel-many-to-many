@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
 
-            //  creo la colonna type_id-> 
-            $table->unsignedBigInteger('type_id')->nullable();
-            // aggiungi la foreign key  sulla colonna  type_id
-            $table->foreign('type_id')
-                    ->references('id')
-                    ->on('types'); 
+            // //  creo la colonna type_id-> 
+            // $table->unsignedBigInteger('type_id')->nullable()->after('slug');
+
+            // // aggiungo la foreign key  sulla colonna  type_id
+            // $table->foreign('type_id')
+            //         ->references('id')
+            //         ->on('types'); 
+
+            // oppure scrivendolo in una sola riga 
+            $table->foreignId('type_id')
+                   ->nullable() 
+                   ->after('slug') 
+                   ->constrained();
         });
     }
 
