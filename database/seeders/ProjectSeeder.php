@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 
 // Models 
 use App\Models\Project;
+use App\Models\Type;
+
 
 class ProjectSeeder extends Seeder
 {
@@ -22,7 +24,10 @@ class ProjectSeeder extends Seeder
 
             Project::create([
                 'name' => $name,
-                'slug' => str()->slug($name)
+                'slug' => str()->slug($name),
+                // utilizzato Model Type con il count() associzmo ad ogni elemento della tabella type ad ogni numero casuale con il rand
+                'type_id' => rand(1,Type::count()),
+
             ]);
         }
     }

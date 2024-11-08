@@ -15,6 +15,8 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
+        Type::truncate();
+        
         $allTypes = [
             'Interno',
             'Esterno',

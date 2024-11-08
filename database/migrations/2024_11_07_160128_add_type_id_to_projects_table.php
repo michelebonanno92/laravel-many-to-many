@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
 
+            // qui usando due istruzioni 
             // //  creo la colonna type_id-> 
             // $table->unsignedBigInteger('type_id')->nullable()->after('slug');
 
@@ -21,9 +22,10 @@ return new class extends Migration
             //         ->references('id')
             //         ->on('types'); 
 
-            // oppure scrivendolo in una sola riga 
+            // oppure scrivendolo in una sola istruzione
             $table->foreignId('type_id')
                    ->nullable() 
+                //    ->nullable serve per non avere una relazione per forza quindi non avere un type id per ogni campo dela tabella projects ma opzionale
                    ->after('slug') 
                    ->constrained();
         });
