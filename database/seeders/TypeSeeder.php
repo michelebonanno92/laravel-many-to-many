@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+// use Database\Seeders\Schema;
 
 // Models 
 use App\Models\Type;
@@ -15,8 +17,13 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        Type::truncate();
-        
+        // tolti i vincoli della chiave esterna nel Seeder Type  senza togliere lo svuotamento
+        Schema::withoutForeignKeyConstraints(function () {
+            Type::truncate();
+        });
+
+        // Type::truncate();
+
         $allTypes = [
             'Interno',
             'Esterno',
@@ -36,14 +43,14 @@ class TypeSeeder extends Seeder
         }
     }
 }
-// con dati faker
-// Type::truncate();
+        // con dati faker
+        // Type::truncate();
 
-        // for ($i = 0; $i < 10; $i++) {
-        //     $title = fake()->sentence();
+                // for ($i = 0; $i < 10; $i++) {
+                //     $title = fake()->sentence();
 
-        //     Type::create([
-        //         'title' => $title,
-        //         'slug' => str()->slug($title)
-        //     ]);
-        // }
+                //     Type::create([
+                //         'title' => $title,
+                //         'slug' => str()->slug($title)
+                //     ]);
+                // }

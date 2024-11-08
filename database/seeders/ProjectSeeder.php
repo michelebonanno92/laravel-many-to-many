@@ -21,6 +21,10 @@ class ProjectSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $name = fake()->sentence();
+            $slug = str()->slug($name);
+
+            $randomProject = Type::inRandomOrder()->first();
+            dd($randomProject);
 
             Project::create([
                 'name' => $name,
