@@ -28,12 +28,18 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //  per cancellare  la colonna devo preima cancellare il vincolo della foreign key 
-            // $table->$table->dropForeign('projects_type_id_foreignn');
 
-            // oppure cancello l'indice di una tabella specifica mettendo in un array
-            $table->dropForeign(['type_id']);
-            $table->dropColumn('type_id');
+            if (Schema::hasColumn('projects', 'type_id')) {
+
+                //  per cancellare  la colonna devo prima cancellare il vincolo della foreign key altrimenti non posso droppare(cancellare) la colonna 
+                // $table->$table->dropForeign('projects_type_id_foreignn');
+                // oppure cancello l'indice di una tabella specifica mettendo in un array
+                $table->dropForeign(['type_id']);
+                // e poi droppo(cancelo) la colonna
+                $table->dropColumn('type_id');
+
+            }
+  
 
         });
     }
