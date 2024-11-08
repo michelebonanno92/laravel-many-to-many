@@ -15,5 +15,12 @@ class Type extends Model
         'slug'
     ];
 
+      // Relationships
+
+      public function project()
+      {
+          return $this->belongsTo(Project::class);
+          // non c'è bisogno di importarmi il model Project  perchè insieme al Model Type si trovano nello stesso namespace
+      }
     
 }

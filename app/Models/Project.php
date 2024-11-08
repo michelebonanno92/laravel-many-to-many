@@ -12,8 +12,16 @@ class Project extends Model
     
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'type_id'
     ];
 
+    // Relationships
+
+    public function types()
+    {
+        return $this->hasMany(Type::class);
+        // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
+    }
   
 }

@@ -23,16 +23,39 @@ class ProjectSeeder extends Seeder
             $name = fake()->sentence();
             $slug = str()->slug($name);
 
-            $randomProject = Type::inRandomOrder()->first();
-            dd($randomProject);
+            $randomTypeId = null ;
+
+            if(rand(0,5)) {
+                // prendo un tipo casuale dal db
+                $randomType = Type::inRandomOrder()->first();
+                $randomTypeId =  $randomType->id;
+            }
 
             Project::create([
                 'name' => $name,
                 'slug' => str()->slug($name),
                 // utilizzato Model Type con il count() associzmo ad ogni elemento della tabella type ad ogni numero casuale con il rand
-                'type_id' => rand(1,Type::count()),
+                'type_id' => $randomTypeId,
 
             ]);
         }
-    }
+
+        // oppure senza un if 
+        // for ($i = 0; $i < 10; $i++) {
+        //     $name = fake()->sentence();
+        //     $slug = str()->slug($name);
+
+        //     // facciamo un'istanza della classe type , prendiamo tutti gli elementi presenti nel model Type li mischiamo con inRandomOrder ordinandoli in modo casuale e con first prendiamo il primo della nuova "lista" 
+        //     $randomProject = Type::inRandomOrder()->first();
+        //     // dd($randomProject);
+
+        //     Project::create([
+        //         'name' => $name,
+        //         'slug' => str()->slug($name),
+        //         // utilizzato Model Type con il count() associzmo ad ogni elemento della tabella type ad ogni numero casuale con il rand
+        //         'type_id' => $randomProject->id,
+
+        //     ]);
+        // }
+    }  
 }
