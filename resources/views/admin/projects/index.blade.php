@@ -23,6 +23,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Numero di type collegati</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -49,16 +50,18 @@
                           <td>{{ $project->slug}}</td>
                           <td class="text-center fs-5">
                             @if ($project->type != null)
-                      {{-- o anche scrivendo --}}
-                      {{-- @if (isset($project->type)) --}}
-
-                            {{-- con questo andiamo a prendere nel ciclo dei project la funzione type che prende il title dalla tabella type attraverso la relazione con il belongsTo che pesca direttamente tramite Model dal db  --}}
+                              {{-- o anche scrivendo --}}
+                              {{-- @if (isset($project->type)) --}
+                              {{-- con questo andiamo a prendere nel ciclo dei project la funzione type che prende il title dalla tabella type attraverso la relazione con il belongsTo che pesca direttamente tramite Model dal db  --}}
                               <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}">
                                 {{ $project->type->title}}
                               </a>
                             @else
                               -
                             @endif
+                          </td>
+                          <td>
+                            {{ $project->type()->count()}}
                           </td>
                           <td>
                             <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-primary">

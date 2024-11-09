@@ -27,19 +27,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($plutos as $type)
+                  @foreach ($types as $type)
                     <tr>
                       <th scope="row">{{ $type->id}}</th>
                       <td>{{ $type->title}}</td>
                       <td>{{ $type->slug}}</td>
                       <td>
-                        Progetti collegati : 
-                        @foreach ($type->projects as $project )
-                        <a href="{{ route('admin.projects.show', ['project' => $project->id])}}" class="me-3">
-                          {{ $project->name}}
-                        </a>
-                        
-                        @endforeach
+                          Progetti collegati : 
+                          @if ($type->projects()->count() > 0)
+                              @foreach ($type->projects as $project )
+                                  <a href="{{ route('admin.projects.show', ['project' => $project->id])}}" class="me-3">
+                                    {{$project->name}}
+                                  </a>
+                              @endforeach
+                          @else
+                            Nessun progetto collegato
+                          @endif
                       </td>
                       <td>
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
