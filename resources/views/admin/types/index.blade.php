@@ -46,6 +46,9 @@
                           @endif
                       </td>
                       <td> {{ $type->projects()->count()}}</td>
+                      {{-- oppure scrivendo {{ $type->projects}} mi stampa una collezione  --}}
+                      {{-- oppure scrivendo il count() prima --}}
+                      {{-- <td> {{ count($type->projects)}}</td> --}}
                       <td>
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
                           Vedi
