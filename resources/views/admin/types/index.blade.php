@@ -23,6 +23,7 @@
                     <th scope="col">Titolo</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Progetti collegati</th>
+                    <th scope="col">Numero dei Progetti collegati</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -44,6 +45,7 @@
                             Nessun progetto collegato
                           @endif
                       </td>
+                      <td> {{ $type->projects()->count()}}</td>
                       <td>
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
                           Vedi
