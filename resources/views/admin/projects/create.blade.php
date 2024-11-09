@@ -22,14 +22,16 @@
     <label for="type_id" class="form-label">Tipologia di progetto</label>
     <select id="type_id" name="type_id"  class="form-select" aria-label="Default select example">
         <option
+        {{-- con questo lo selezioniamo solo se non era stato selezionato --}}
         @if (old('type_id') == null)
             selected
         @endif
            value="">Seleziona una tipologia</option>
         @foreach ($types as $type)
           <option 
+          {{-- con questo se l'old è uguale ad un id allora facciamo la selezione con il selected --}}
               @if (old('type_id') == $type->id)
-                  selected   
+                 selected   
               @endif
               value="{{ $type->id }}">{{ $type->title }}</option>
         @endforeach

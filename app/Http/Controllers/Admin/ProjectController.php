@@ -90,8 +90,11 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Project $project)
-    {
-        return view('admin.projects.edit', compact('project'));
+    {   
+        // aggiungiamo ache qui i types per usarli nella view aggiungendoli anche nel compact
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -99,23 +102,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        // $data = $request->validate([
-        //     'name' => 'required|min:3|max:6',
-        // ],[
-        //     'name.min' => 'il campo titolo deve avere minimo 3 caratteri'
-        // ]);
+        $data = $request->validate([
+            'name' => 'required|min:3|max:6',
+            'type_id' => 'nullable|exists:types,id'
+        ],[
+            'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
+            'type_id.exists' => 'tipologia non valida'
+        ]);
 
-        // $data['slug'] = str()->slug($data['name']);
+        $data['slug'] = str()->slug($data['name']);
 
-        // $project->update($data);
-        //   return redirect()->route('admin.projects.index', ['project' => $project->id]);
+        $project->update($data);
+
+        return redirect()->route('admin.projects.index', ['project' => $project->id]);
 
        
-        $project->name = $request->name;
-        $project->slug = Str::slug($request->name, '-');
+        // $project->name = $request->name;
+        // $project->slug = Str::slug($request->name, '-');
 
-        $project->update();
-        // \Log::debug($project);
+        // $project->update();
+        // // \Log::debug($project);
 
         return redirect()->route('admin.projects.index', ['project' => $project->id]);
 
