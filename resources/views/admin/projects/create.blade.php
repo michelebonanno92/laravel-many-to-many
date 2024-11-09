@@ -27,8 +27,12 @@
             {{ $type->title }}
           </option>
         @endforeach
-  
     </select>
+    @error('type_id')
+      <div class="alert alert-danger mt-2">
+        Errore Tipologia: {{ $message }}
+      </div>
+    @enderror
   </div>
 
   

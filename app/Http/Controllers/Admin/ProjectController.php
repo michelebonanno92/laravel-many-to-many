@@ -43,8 +43,11 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|min:3|max:6',
+            // nullable, deve esistere come id nella tabella types 
+            'type_id' => 'nullable|exists:types,id'
         ],[
-            'name.min' => 'il campo titolo deve avere minimo 3 caratteri'
+            'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
+            'type_id.exists' => 'tipologia non valida',
         ]);
 
         $data['slug'] = str()->slug($data['name']);
