@@ -22,6 +22,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">Titolo</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Progetti collegati</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -31,6 +32,15 @@
                       <th scope="row">{{ $type->id}}</th>
                       <td>{{ $type->title}}</td>
                       <td>{{ $type->slug}}</td>
+                      <td>
+                        Progetti collegati : 
+                        @foreach ($type->projects as $project )
+                        <a href="{{ route('admin.projects.show', ['project' => $project->id])}}" class="me-3">
+                          {{ $project->name}}
+                        </a>
+                        
+                        @endforeach
+                      </td>
                       <td>
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
                           Vedi

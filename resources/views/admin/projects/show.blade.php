@@ -9,7 +9,8 @@
       <h5 class="card-title">{{ $project->name}}</h5>
       <p class="card-text">{{ $project->id}}</p>
       <p class="card-text">{{ $project->slug}}</p>
-      <p>
+      <p> 
+        Tipologia collegata :
         @if ($project->type != null)
         <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}">
           {{ $project->type->title}}
