@@ -21,11 +21,17 @@
   <div class="mb-3">
     <label for="type_id" class="form-label">Tipologia di progetto</label>
     <select id="type_id" name="type_id"  class="form-select" aria-label="Default select example">
-        <option value="">Seleziona una tipologia</option>
+        <option
+        @if (old('type_id') == null)
+            selected
+        @endif
+           value="">Seleziona una tipologia</option>
         @foreach ($types as $type)
-          <option value="{{ $type->id }}">
-            {{ $type->title }}
-          </option>
+          <option 
+              @if (old('type_id') == $type->id)
+                  selected   
+              @endif
+              value="{{ $type->id }}">{{ $type->title }}</option>
         @endforeach
     </select>
     @error('type_id')
