@@ -27,8 +27,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($projects as $project )
-
                   {{-- le funzioni del model le possiamo richiare come funzioni e la usiamo per iniziare una query che poi va finalizzata--}}
                     {{--  con first prendi il primo --}}
                       {{-- @if ($project->type_id != null)
@@ -42,45 +40,50 @@
                       {{-- @if ($project->type_id != null)
                     
                         @dd($project->type)
-                
+      
                       @endif --}}
+                      @foreach ($projects as $project )
+                        <tr>
+                          <th scope="row">{{ $project->id}}</th>
+                          <td>{{ $project->name}}</td>
+                          <td>{{ $project->slug}}</td>
+                          <td class="text-center fs-5">
+                            @if ($project->type != null)
+                      {{-- o anche scrivendo --}}
+                      {{-- @if (isset($project->type)) --}}
 
-                    <tr>
-                      <th scope="row">{{ $project->id}}</th>
-                      <td>{{ $project->name}}</td>
-                      <td>{{ $project->slug}}</td>
-                      <td class="text-center fs-5">
-                        @if ($project->type != null)
-                        {{-- con questo andiamo a prendere nel ciclo dei project la funzione type che prende il title dalla tabella type attraverso la relazione con il belongsTo che pesca direttamente tramite Model dal db  --}}
-                          {{ $project->type->title}}
-                        @else
-                          -
-                        @endif
-                      </td>
-                      <td>
-                        <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-primary">
-                          Vedi
-                         </a>
-                         <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">
-                           Modifica
-                         </a>
-                         <form 
-                         {{-- aggiunto conferma di cancellazione --}}
-                            onsubmit="return confirm('sei sicuro di volerlo cancellare ?')"
-                            action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" 
-                            method="POST" 
-                            class="d-inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                               Elimina
-                            </button>
-                         </form>
-                      </td>
-                   
-                    </tr>
+                            {{-- con questo andiamo a prendere nel ciclo dei project la funzione type che prende il title dalla tabella type attraverso la relazione con il belongsTo che pesca direttamente tramite Model dal db  --}}
+                              <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}">
+                                {{ $project->type->title}}
+                              </a>
+                            @else
+                              -
+                            @endif
+                          </td>
+                          <td>
+                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-primary">
+                              Vedi
+                            </a>
+                            <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">
+                              Modifica
+                            </a>
+                            <form 
+                            {{-- aggiunto conferma di cancellazione --}}
+                                onsubmit="return confirm('sei sicuro di volerlo cancellare ?')"
+                                action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" 
+                                method="POST" 
+                                class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                  Elimina
+                                </button>
+                            </form>
+                          </td>
+                      
+                        </tr>
                  
-                  @endforeach
+                      @endforeach
                 </tbody>
                
                
