@@ -18,9 +18,9 @@ class Project extends Model
 
     // Relationships
 
-    public function types()
+    public function type()
     {
-        return $this->hasMany(Type::class);
+        return $this->belongsTo(Type::class);
         // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
     }
   

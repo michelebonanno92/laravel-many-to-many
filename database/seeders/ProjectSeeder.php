@@ -25,7 +25,7 @@ class ProjectSeeder extends Seeder
 
             $randomTypeId = null ;
 
-            if(rand(0,5)) {
+            if(rand(0,1)) {
                 // prendo un tipo casuale dal db
                 $randomType = Type::inRandomOrder()->first();
                 $randomTypeId =  $randomType->id;
