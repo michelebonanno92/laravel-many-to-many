@@ -10,7 +10,7 @@
       <p class="card-text">{{ $type->id}}</p>
       <p class="card-text">{{ $type->slug}}</p>
       <a href="{{ route('admin.types.edit', ['type' => $type->id]) }}" class="btn btn-warning">
-        Modifica
+            Modifica
       </a>
       <form 
       {{-- aggiunto conferma di cancellazione --}}

@@ -9,6 +9,15 @@
       <h5 class="card-title">{{ $project->name}}</h5>
       <p class="card-text">{{ $project->id}}</p>
       <p class="card-text">{{ $project->slug}}</p>
+      <p>
+        @if ($project->type != null)
+        <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}">
+          {{ $project->type->title}}
+        </a>
+       @else
+      -
+       @endif</p>
+      </p>
       <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">Modifica</a>
       <form 
         {{-- aggiunto conferma di cancellazione --}}
