@@ -18,6 +18,19 @@
       </div>
     @enderror
   </div>
+  <div class="mb-3">
+    <label for="type_id" class="form-label">Tipologia di progetto</label>
+    <select id="type_id" name="type_id"  class="form-select" aria-label="Default select example">
+        <option value="">Seleziona una tipologia</option>
+        @foreach ($types as $type)
+          <option value="{{ $type->id }}">
+            {{ $type->title }}
+          </option>
+        @endforeach
+  
+    </select>
+  </div>
+
   
   <button type="submit" class="btn btn-primary w-100">
     + Aggiungi

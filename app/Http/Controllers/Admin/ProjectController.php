@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
 // Models
-use App\Models\Project;
+use App\Models\{
+    Project,
+    Type
+};
 
 class ProjectController extends Controller
 {
@@ -26,7 +29,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        // così mi importo i types nella view create
+        $types = Type::all();
+
+        return view('admin.projects.create', compact('types'));
 
     }
 

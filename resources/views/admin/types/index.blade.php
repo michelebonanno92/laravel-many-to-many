@@ -13,7 +13,7 @@
                     <a href="{{ route('admin.types.create')}}" class="btn btn-success w-100">
                       + Aggiungi tipo
                     </a>
-                </div>
+                </div>z
             </div>
 
             <table class="table">
@@ -35,7 +35,8 @@
                       <td>{{ $type->slug}}</td>
                       <td>
                           Progetti collegati : 
-                          @if ($type->projects()->count() > 0)
+                          {{-- @if ($type->projects()->count() > 0) --}}
+                          @if (count($type->projects) > 0)
                               @foreach ($type->projects as $project )
                                   <a href="{{ route('admin.projects.show', ['project' => $project->id])}}" class="me-3">
                                     {{$project->name}}
@@ -45,10 +46,11 @@
                             Nessun progetto collegato
                           @endif
                       </td>
-                      <td> {{ $type->projects()->count()}}</td>
+                      {{-- metodo query --}}
+                      {{-- <td> {{ $type->projects()->count()}}</td> --}}
                       {{-- oppure scrivendo {{ $type->projects}} mi stampa una collezione  --}}
                       {{-- oppure scrivendo il count() prima --}}
-                      {{-- <td> {{ count($type->projects)}}</td> --}}
+                      <td> {{ count($type->projects)}}</td>
                       <td>
                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary">
                           Vedi
