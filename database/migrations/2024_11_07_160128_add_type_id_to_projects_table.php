@@ -21,6 +21,8 @@ return new class extends Migration
             // $table->foreign('type_id')
             //         ->references('id')
             //         ->on('types'); 
+            //         ->onUpdate('cascade')
+            //         ->onDelete('set null');
 
             // oppure scrivendolo in una sola istruzione
             $table->foreignId('type_id')
