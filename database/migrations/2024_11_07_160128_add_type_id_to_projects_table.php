@@ -27,7 +27,10 @@ return new class extends Migration
                    ->nullable() 
                 //    ->nullable serve per non avere una relazione per forza quindi non avere un type id per ogni campo dela tabella projects ma opzionale
                    ->after('slug') 
-                   ->constrained();
+                   ->constrained()
+                   ->onUpdate('cascade')
+                   ->onDelete('set null');
+
         });
     }
 
