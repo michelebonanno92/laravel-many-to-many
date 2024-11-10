@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             // richiamo prima TySeeder 
             TypeSeeder::class,
-            ProjectSeeder::class
+            ProjectSeeder::class,
+            TechnologySeeder::class
+
 
         ]);
     }
