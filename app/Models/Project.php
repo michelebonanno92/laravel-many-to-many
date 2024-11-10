@@ -23,5 +23,11 @@ class Project extends Model
         return $this->belongsTo(Type::class);
         // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
     }
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
+        // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
+    }
   
 }

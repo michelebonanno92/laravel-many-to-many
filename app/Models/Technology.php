@@ -14,4 +14,12 @@ class Technology extends Model
         'slug'
     ];
 
+     // Relationships
+
+     public function projects()
+     {
+         return $this->belongsToMany(Project::class);
+         // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
+     }
+
 }
