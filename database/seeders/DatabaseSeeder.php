@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PostSeeder::class,
-            // richiamo prima TySeeder 
+            // richiamo prima TySeeder perchè per avere un tipo di preogetto devo aver siddato prima il tipo 
             TypeSeeder::class,
             ProjectSeeder::class,
             TechnologySeeder::class

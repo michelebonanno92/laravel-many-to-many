@@ -12,8 +12,32 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('project_technology', function (Blueprint $table) {
-            $table->id();
+            // creo la colonna project_id-> 
+            $table->unsignedBigInteger('project_id');
+            // // aggiungi la foreign key  sulla colonna  project_id
+            $table->foreign('project_id')
+                    ->references('id')
+                    ->on('projects')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+
+            // creo la colonna technology_id-> 
+            $table->unsignedBigInteger('technology_id');
+            // // aggiungi la foreign key  sulla colonna  technology_id
+            $table->foreign('technology_id')
+                    ->references('id')
+                    ->on('technologies')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            //  per tenere traccia di quando sono state create le colonne usiamo
             $table->timestamps();
+            // che creerà il created_at  e il updated_at
+
+            // creare la primary key composta dai due id
+            $table->primary([
+                'project_id',
+                'technology_id'
+            ]);
         });
     }
 
