@@ -9,6 +9,18 @@
       <h5 class="card-title">{{ $technology->name}}</h5>
       <p class="card-text">{{ $technology->id}}</p>
       <p class="card-text">{{ $technology->slug}}</p>
+      <p>
+        Numero di progetti collegati: 
+        {{ $technology->projects()->count() }}
+      </p>
+      <p>
+        Progetti collegati : 
+        @foreach ($technology->projects as $project)
+        <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"  class="badge rounded-pill text-bg-warning">
+          {{ $project->name}}
+        </a>
+        @endforeach
+      </p>
       {{-- <p> 
         Tipologia collegata :
         @if ($technology->type != null)

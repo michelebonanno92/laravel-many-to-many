@@ -22,7 +22,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Slug</th>
-                    {{-- <th scope="col">Numero di type collegati</th> --}}
+                    <th scope="col">Numero di progetti collegati</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -47,6 +47,9 @@
                           <th scope="row">{{ $technology->id}}</th>
                           <td>{{ $technology->name}}</td>
                           <td>{{ $technology->slug}}</td>
+                          <td>
+                            {{ $technology->projects()->count() }}
+                          </td>
                           <td>
                             <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="btn btn-primary">
                               Vedi

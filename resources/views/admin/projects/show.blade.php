@@ -19,6 +19,13 @@
       -
        @endif</p>
       </p>
+      <p> 
+          @foreach ($project->technologies as $technology )
+            <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}"  class="badge rounded-pill text-bg-warning">
+              {{ $technology->name}}
+            </a>
+          @endforeach
+      </p>
       <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">Modifica</a>
       <form 
         {{-- aggiunto conferma di cancellazione --}}

@@ -20,9 +20,10 @@
                 <thead>
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Nome</th>
                     <th scope="col">Slug</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Tipologia</th>
+                    <th scope="col">Tecnologia</th>
                     <th scope="col">Numero di type collegati</th>
                     <th scope="col"></th>
                   </tr>
@@ -59,6 +60,13 @@
                             @else
                               -
                             @endif
+                          </td>
+                          <td>
+                            @foreach ($project->technologies as $technology )
+                              <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}"  class="badge rounded-pill text-bg-warning">
+                                {{ $technology->name}}
+                              </a>
+                            @endforeach
                           </td>
                           <td>
                             {{ $project->type()->count()}}
