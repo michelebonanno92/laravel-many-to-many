@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 // Models
 use App\Models\{
     Project,
-    Type
+    Type,
+    Technology
 };
 
 class ProjectController extends Controller
@@ -31,8 +32,10 @@ class ProjectController extends Controller
     {
         // così mi importo i types nella view create
         $types = Type::all();
+        $technologies = Technology::get();
 
-        return view('admin.projects.create', compact('types'));
+
+        return view('admin.projects.create', compact('types','technologies'));
 
     }
 
@@ -44,7 +47,9 @@ class ProjectController extends Controller
         $data = $request->validate([
             'name' => 'required|min:3|max:6',
             // nullable, deve esistere come id nella tabella types 
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technologies,id'
+
         ],[
             'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
             'type_id.exists' => 'tipologia non valida',
@@ -53,6 +58,12 @@ class ProjectController extends Controller
         $data['slug'] = str()->slug($data['name']);
 
         $project = Project::create($data);
+      
+        $project->technologies()->sync($data['technologies'] ?? []); 
+
+        // prendiamo tutti gli id che si troveranno nell'array technologies e li sincronizzerà con i projects se invece non passiamo niente diventa null( ?? [])
+
+
           return redirect()->route('admin.projects.index', ['project' => $project->id]);
         // $request->validate([
         //     'name' => 'required|min:3|max:6',
@@ -93,8 +104,10 @@ class ProjectController extends Controller
     {   
         // aggiungiamo ache qui i types per usarli nella view aggiungendoli anche nel compact
         $types = Type::all();
+        $technologies = Technology::get();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+
+        return view('admin.projects.edit', compact('project', 'types','technologies'));
     }
 
     /**
@@ -104,7 +117,8 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|min:3|max:6',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technologies,id'
         ],[
             'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
             'type_id.exists' => 'tipologia non valida'
@@ -113,6 +127,9 @@ class ProjectController extends Controller
         $data['slug'] = str()->slug($data['name']);
 
         $project->update($data);
+        
+        $project->technologies()->sync($data['technologies'] ?? []); 
+
 
         return redirect()->route('admin.projects.index', ['project' => $project->id]);
 

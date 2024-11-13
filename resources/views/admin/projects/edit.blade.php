@@ -52,6 +52,29 @@
         </div>
       @enderror
   </div>
+
+  <div class="mb-3">
+    <div>
+      <label for="type_id" class="form-label">tecnologie</label>
+    </div>
+    @foreach ($technologies as $technology)
+      <div class="form-check form-check-inline">
+        <input 
+        {{-- se la collezione delle tecnologie associate al project contiene l'id della tecnologia che sto considerando allora aggiungo l'attributo checked--}}
+            @if ($project->technologies->contains($technology->id))
+                checked
+            @endif
+            class="form-check-input" 
+            type="checkbox" 
+            id="technology-{{ $technology->id }}" 
+            name="technologies[]" 
+            value="{{ $technology->id }}">
+        <label class="form-check-label" for="technology-{{ $technology->id }}">
+          {{ $technology->name }}
+        </label>
+      </div>
+    @endforeach
+</div>
   
   <button type="submit" class="btn btn-primary w-100">
     + Modifica
