@@ -23,8 +23,9 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Tipologia</th>
-                    <th scope="col">Tecnologia</th>
                     <th scope="col">Numero di type collegati</th>
+                    <th scope="col">Tecnologia</th>
+                    <th scope="col">Numero di tecnologie collegate</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -62,6 +63,9 @@
                             @endif
                           </td>
                           <td>
+                            {{ $project->type()->count()}}
+                          </td>
+                          <td>
                             @foreach ($project->technologies as $technology )
                               <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}"  class="badge rounded-pill text-bg-warning">
                                 {{ $technology->name}}
@@ -69,7 +73,7 @@
                             @endforeach
                           </td>
                           <td>
-                            {{ $project->type()->count()}}
+                            {{ $project->technologies()->count()}}
                           </td>
                           <td>
                             <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-primary">
