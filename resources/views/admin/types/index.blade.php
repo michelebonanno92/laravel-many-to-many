@@ -34,7 +34,6 @@
                       <td>{{ $type->title}}</td>
                       <td>{{ $type->slug}}</td>
                       <td>
-                          Progetti collegati : 
                           {{-- @if ($type->projects()->count() > 0) --}}
                           @if (count($type->projects) > 0)
                               @foreach ($type->projects as $project )
