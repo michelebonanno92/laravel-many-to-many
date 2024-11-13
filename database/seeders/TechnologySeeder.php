@@ -38,8 +38,9 @@ class TechnologySeeder extends Seeder
             ]);
 
             $projectIds = [];
+            $projectsCount = Project::count();
 
-            for ($j=0; $j < rand(0, Project::count()); $j++) { 
+            for ($j=0; $j < rand(0, $projectsCount); $j++) { 
                 // così come secondo argomento di rand() prendo tutti i progetti che ci sono con direttamente il count 
                 $randomProject = Project::inRandomOrder()->first();
                 // poi con la funzione inRAndomOrder()first() prendo uno dei progetti in maniera cusuale prendendo il primo 
