@@ -4,10 +4,21 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+
 
 // Models 
 use App\Models\Project;
 use App\Models\Type;
+// use App\Models\Technology;
+// o scrivendo :
+// Models 
+// use App\Models\{
+// Project,
+// Type,
+// Technology
+// };
+
 
 
 class ProjectSeeder extends Seeder
@@ -17,7 +28,11 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::truncate();
+          // ogni volta che c'è una relazione esterna non possiamo effettuare normalmente il truncate() quindi si usa questa funzione per evitare l'errore
+        Schema::withoutForeignKeyConstraints(function () {
+            Project::truncate();
+        });
+        // Project::truncate();
 
         for ($i = 0; $i < 10; $i++) {
             $name = fake()->sentence();
