@@ -48,6 +48,14 @@
                           <td>{{ $technology->name}}</td>
                           <td>{{ $technology->slug}}</td>
                           <td>
+                            @foreach ($technology->projects as $project)
+                              <a href="{{ route('admin.projects.show',['project' => $project->id]) }}" class="badge rounded-pill text-bg-warning">
+                                  {{ $project->name }}
+                              </a>
+                                
+                            @endforeach
+                          </td>
+                          <td>
                             {{ $technology->projects()->count() }}
                           </td>
                           <td>
