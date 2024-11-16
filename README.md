@@ -27,6 +27,12 @@ I task da svolgere sono diversi, ma alcuni di essi sono un ripasso di ciò che a
 - permettere all'utente di associare le tecnologie nella pagina di creazione e modifica di un progetto
 - gestire il salvataggio dell'associazione progetto-tecnologie con opportune regole di validazione
  -->
+
+ <!-- 
+ Ciao ragazzi,
+continuiamo a lavorare nella repo dei giorni scorsi e aggiungiamo un'immagine ai nostri progetti.
+Ricordiamoci di creare il symlink con l'apposito comando artisan e di aggiungere l'attributo enctype="multipart/form-data" ai form di creazione e di modifica!
+  -->
 --------------------------------------------------------------------------------------------
 
 

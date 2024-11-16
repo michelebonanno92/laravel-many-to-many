@@ -18,7 +18,9 @@ class Technology extends Model
 
      public function projects()
      {
-         return $this->belongsToMany(Project::class);
+         return $this->belongsToMany(Project::class)
+                      ->withTimestamps();
+
          // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
      }
 
