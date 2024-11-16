@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
+// Helpers
+use Illuminate\Support\Facades\Storage;
+// per spostare i file da $data allo storage 
+
 // Models
 use App\Models\{
     Project,
@@ -44,22 +48,32 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $data = $request->validate([
             'name' => 'required|min:3|max:6',
             // nullable, deve esistere come id nella tabella types 
             'type_id' => 'nullable|exists:types,id',
+            'file' => 'nullable|image|max:1024',
             'technologies' => 'nullable|array|exists:technologies,id'
 
         ],[
             'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
             'type_id.exists' => 'tipologia non valida',
+            'file.max' => 'immagine troppo grande'
+
         ]);
+
+        // con questo laravel crea una cartella di nome uploads nello storage/app/public aggiornando con put il file con un nuovo nome che gli viene assegnato cambianfo il percorso una volta salvato nel db con uploads/e nuovo nome del file ...
+        $filePath = Storage::put('uploads', $data['file']);
+
+        $data['file'] = $filePath;
 
         $data['slug'] = str()->slug($data['name']);
 
         $project = Project::create($data);
       
         $project->technologies()->sync($data['technologies'] ?? []); 
+
 
         // prendiamo tutti gli id che si troveranno nell'array technologies e li sincronizzerà con i projects se invece non passiamo niente diventa null( ?? [])
 
@@ -140,7 +154,7 @@ class ProjectController extends Controller
         // $project->update();
         // // \Log::debug($project);
 
-        return redirect()->route('admin.projects.index', ['project' => $project->id]);
+        // return redirect()->route('admin.projects.index', ['project' => $project->id]);
 
 
     }

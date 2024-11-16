@@ -13,7 +13,8 @@ class Project extends Model
     protected $fillable = [
         'name',
         'slug',
-        'type_id'
+        'type_id',
+        'file'
     ];
 
     // Relationships
