@@ -64,9 +64,13 @@ class ProjectController extends Controller
         ]);
 
         // con questo laravel crea una cartella di nome uploads nello storage/app/public aggiornando con put il file con un nuovo nome che gli viene assegnato cambianfo il percorso una volta salvato nel db con uploads/e nuovo nome del file ...
-        $filePath = Storage::put('uploads', $data['file']);
 
-        $data['file'] = $filePath;
+        if (isset($data['file'])) {
+            $filePath = Storage::put('uploads', $data['file']);
+
+             $data['file'] = $filePath;
+        }
+       
 
         $data['slug'] = str()->slug($data['name']);
 
