@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('file');
 
-     
-                         
-             $table->timestamps();
+            $table->timestamps();
         });
     }
 

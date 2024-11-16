@@ -42,6 +42,16 @@
       </div>
     @enderror
   </div>
+  <div class="mb-3">
+    <label for="file" class="form-label">Inserisci un immagine</label>
+    <input type="file" class="form-control" id="file"  name="file" required >
+    @error('name')
+      <div class="alert alert-danger mt-2">
+        Errore Nome: {{ $message }}
+      </div>
+    @enderror
+  </div>
+
 
   <div class="mb-3">
       <div>
