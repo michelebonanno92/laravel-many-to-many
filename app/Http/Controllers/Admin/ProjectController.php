@@ -138,7 +138,8 @@ class ProjectController extends Controller
             'name' => 'required|min:3|max:6',
             'type_id' => 'nullable|exists:types,id',
             'file' => 'nullable|image|max:1024',
-            'technologies' => 'nullable|array|exists:technologies,id'
+            'technologies' => 'nullable|array|exists:technologies,id',
+            'remove_img' => 'nullable'
         ],[
             'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
             'type_id.exists' => 'tipologia non valida',
@@ -158,7 +159,11 @@ class ProjectController extends Controller
             $filePath = Storage::put('uploads', $data['file']);
             $data['file'] = $filePath;
         }
-
+        elseif (isset($data['remove_img']) && $project->file) {
+            // elimina file(immagine) precedente
+            Storage::delete($project->file);
+            $project->file = null;
+        }
         $project->update($data);
         
         $project->technologies()->sync($data['technologies'] ?? []); 

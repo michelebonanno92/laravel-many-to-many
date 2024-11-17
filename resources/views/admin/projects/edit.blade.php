@@ -60,11 +60,22 @@
     <input type="file" class="form-control" id="file"  name="file">
 
     <div class="mt-4">
-      <div class="mb-2">
-        Immagine attuale :
-      </div>
+    
       @if ($project->file)
-          <img src="{{ asset('/storage/'.$project->file) }}" alt="{{ $project->name }}" style="height: 100px" >
+      
+        <h5 class="mb-2">
+          Immagine attuale :
+        </h5>
+
+        <img src="{{ asset('/storage/'.$project->file) }}" alt="{{ $project->name }}" style="height: 100px" >
+
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="checkbox" value="1" id="remove_img" name="remove_img">
+          <label class="form-check-label" for="remove_img">
+            Rimuovi immagine attuale
+          </label>
+        </div>
+
       @endif
     </div>
 
