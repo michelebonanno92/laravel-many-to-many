@@ -16,9 +16,10 @@
     </ul>
 @endif --}}
 
-<form action="{{ route('admin.projects.update',['project' => $project->id])}}" method="POST">
+<form action="{{ route('admin.projects.update',['project' => $project->id])}}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')
+
   <div class="mb-3">
     <label for="name" class="form-label">Nome</label>
     <input type="text" class="form-control" id="name"  name="name" value="{{ old('name', $project->name) }}" required maxlength="6">
@@ -28,6 +29,7 @@
       </div>
     @enderror
   </div>
+
   <div class="mb-3">
       <label for="type_id" class="form-label">Tipologia di progetto</label>
       <select id="type_id" name="type_id"  class="form-select" aria-label="Default select example">
@@ -51,6 +53,26 @@
           Errore Tipologia: {{ $message }}
         </div>
       @enderror
+  </div>
+
+  <div class="mb-3">
+    <label for="file" class="form-label">Immagine</label>
+    <input type="file" class="form-control" id="file"  name="file">
+
+    <div class="mt-4">
+      <div class="mb-2">
+        Immagine attuale :
+      </div>
+      @if ($project->file)
+          <img src="{{ asset('/storage/'.$project->file) }}" alt="{{ $project->name }}" style="height: 100px" >
+      @endif
+    </div>
+
+    @error('file')
+    <div class="alert alert-danger mt-2">
+      Errore immagine: {{ $message }}
+    </div>
+  @enderror
   </div>
 
   <div class="mb-3">

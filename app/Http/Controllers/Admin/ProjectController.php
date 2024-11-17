@@ -67,7 +67,8 @@ class ProjectController extends Controller
 
         if (isset($data['file'])) {
             $filePath = Storage::put('uploads', $data['file']);
-
+            // nel caso volessimo utilizzare un disk diverso da quello di FILESYSTEM_DISK=public nel file env basta aggiungere la funzione disk()
+            // $filePath = Storage::disk('local')->put('uploads', $data['file']);
              $data['file'] = $filePath;
         }
        
@@ -136,13 +137,27 @@ class ProjectController extends Controller
         $data = $request->validate([
             'name' => 'required|min:3|max:6',
             'type_id' => 'nullable|exists:types,id',
+            'file' => 'nullable|image|max:1024',
             'technologies' => 'nullable|array|exists:technologies,id'
         ],[
             'name.min' => 'il campo titolo deve avere minimo 3 caratteri',
-            'type_id.exists' => 'tipologia non valida'
+            'type_id.exists' => 'tipologia non valida',
+            'file.max' => 'immagine troppo grande'
         ]);
 
         $data['slug'] = str()->slug($data['name']);
+
+        if (isset($data['file'])) {
+            // se è diverso da null entra nella condizione e fai l'eliminazione del vecchio con l'aggiunta del nuovo 
+            if ($project->file) {
+                // elimina file(immagine) precedente
+                Storage::delete($project->file);
+                $project->file = null;
+            }
+            // altrimenti se è null aggiornalo e salvalo
+            $filePath = Storage::put('uploads', $data['file']);
+            $data['file'] = $filePath;
+        }
 
         $project->update($data);
         

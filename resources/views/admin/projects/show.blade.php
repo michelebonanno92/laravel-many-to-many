@@ -33,8 +33,8 @@
       </p>
       <div>
         @if ($project->file)
-            <img src="{{ '/storage/'.$project->file }}" alt="{{ $project->name }}" class="card-img-bottom mb-4">
-            <img src="{{ asset('/storage/'.$project->file) }}" alt="{{ $project->name }}" class="card-img-bottom mb-4">
+            {{-- <img src="{{ '/storage/'.$project->file }}" alt="{{ $project->name }}" class="card-img-bottom mb-4" > --}}
+            <img src="{{ asset('/storage/'.$project->file) }}" alt="{{ $project->name }}" style="height: 100px">
         @endif
       </div>
       <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">Modifica</a>

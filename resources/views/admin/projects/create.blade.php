@@ -44,7 +44,7 @@
     @enderror
   </div>
   <div class="mb-3">
-    <label for="file" class="form-label">Inserisci un immagine</label>
+    <label for="file" class="form-label">Immagine</label>
     <input type="file" class="form-control" id="file"  name="file" required >
     @error('file')
     <div class="alert alert-danger mt-2">
