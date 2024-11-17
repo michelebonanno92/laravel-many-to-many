@@ -134,6 +134,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
+        // casi possibile sul file img:
+        // 1) se c'è già un immagine , la posso sostituire
+        // 2) se non c'è l'immagine , la posso aggiungere
+        // 3) se c'è un immagine , la posso rimuovere
+
         $data = $request->validate([
             'name' => 'required|min:3|max:6',
             'type_id' => 'nullable|exists:types,id',
@@ -189,6 +195,11 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
+        // prima di cancellare direttamente il project se è presente il project->file allora lo eliminiamo 
+        if ($project->file) {
+            Storage::delete($project->file);
+        }
 
         return redirect()->route('admin.projects.index');
     }
