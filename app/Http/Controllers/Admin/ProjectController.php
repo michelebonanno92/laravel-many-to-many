@@ -200,6 +200,7 @@ class ProjectController extends Controller
         if ($project->file) {
             Storage::delete($project->file);
         }
+        // aggiunto condizione nel destroy per eliminare il file img insieme al project altrimenti verrebbe cancellato il project ma non il file img
 
         return redirect()->route('admin.projects.index');
     }
